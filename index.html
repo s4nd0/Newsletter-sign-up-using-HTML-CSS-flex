@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <title>Frontend Mentor | Newsletter sign-up form with success message</title>
+  <link rel="stylesheet" href="styl.css">
+</head>
+<body>
+  <main>
+    <div class="image-mobile" id="image-mobile">
+      <img src="./assets/images/illustration-sign-up-mobile.svg" alt="illustration-sign-up-mobile">
+    </div>
+    <div class="content" id="content">
+      <h1>Stay updated!</h1>
+      <p>Join 60,000+ product managers receiving monthly updates on:</p>
+      <ul>
+        <li>Product discovery and building what matters</li>
+        <li>Measuring to ensure updates are a success</li>
+        <li>And much more!</li>
+      </ul>
+
+      <div class="email-flex">
+        <p id="paragraph-email">Email address</p>
+        <p id="paragraph-email-valid">Valid email required</p>
+      </div>
+        
+        <input type="email" id="input-email" placeholder="email@company.com">
+        <button onclick="valid()">Subscribe to monthly newsletter</button>
+    </div>
+    <div class="image-desktop" id="image-desktop">
+      <img src="./assets/images/illustration-sign-up-desktop.svg" alt="illustration-sign-up-desktop">
+    </div>
+
+    <div class="content-success" id="content-success">
+      <div>
+        <img src="./assets/images/icon-success.svg" alt="icon-success">
+        <h2>Thanks for subscribing!</h2>
+        <p>A confirmation email has been sent to <b>ash@loremcompany.com</b>. Please open it and click the button inside to confirm your subscription</p>
+      </div>
+      <button onclick="reload()">Dismiss message</button>
+      
+    </div>
+  </main>
+
+  <script>
+
+    var pole = document.getElementById("input-email");
+
+    function valid(){
+
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById("input-email").value))  // No error
+      {
+        document.getElementById("paragraph-email-valid").style.display = "none";
+        pole.style.backgroundColor = "white";
+        pole.style.border = "1px solid var(--grey)";
+
+        success();
+      
+        return (true)
+      }
+
+      document.getElementById("paragraph-email-valid").style.display = "block";  // Error
+      pole.style.backgroundColor = "hsl(4, 100%, 85%)";
+      pole.style.border = "1px solid hsl(4, 100%, 67%)";
+    }
+
+    function success(){
+      document.getElementById("content").style.display = "none";
+      document.getElementById("image-mobile").style.display = "none";
+      document.getElementById("image-desktop").style.display = "none";
+      document.getElementById("content-success").style.display = "flex";
+    }
+
+    function reload(){
+      location.reload()
+    }
+  </script>
+</body>
+</html>
